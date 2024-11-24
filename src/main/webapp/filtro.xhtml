@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Filtro de Jogos</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputLabel value="Time:"/>
+        <h:selectOneMenu value="#{jogoBean.filtroTime}">
+            <f:selectItem itemValue="A" itemLabel="Time A"/>
+            <f:selectItem itemValue="B" itemLabel="Time B"/>
+            <f:selectItem itemValue="C" itemLabel="Time C"/>
+        </h:selectOneMenu><br/>
+
+        <h:commandButton value="Localizar" action="#{jogoBean.filtrar()}"/>
+        <h:messages/>
+
+        <h:dataTable value="#{jogoBean.jogosFiltrados}" var="jogo">
+            <h:column>
+                <f:facet name="header">Data Partida</f:facet>
+                <h:outputText value="#{jogo.dataPartida}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Time 1</f:facet>
+                <h:outputText value="#{jogo.time1}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Time 2</f:facet>
+                <h:outputText value="#{jogo.time2}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
+

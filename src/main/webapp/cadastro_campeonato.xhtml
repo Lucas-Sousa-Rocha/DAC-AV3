@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastro de Campeonato</title>
+    <h:outputStylesheet name="styles.css" />
+    <style>
+        /* Estilo geral do corpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Estilo do formulário */
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Título do formulário */
+        h3 {
+            color: #3498db;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Estilo do input */
+        .ui-inputtext {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Estilo do botão */
+        .ui-button {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .ui-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilo das mensagens */
+        .ui-messages {
+            margin-top: 20px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form>
+        <div class="form-container">
+            <!-- Título do formulário -->
+            <h3>Cadastro de Campeonato</h3>
+
+            <!-- Input de nome do campeonato -->
+            <p:outputLabel for="nome" value="Nome do Campeonato:" />
+            <p:inputText id="nome" value="#{campeonatoBean.campeonato.nome}" required="true" 
+                         requiredMessage="Nome do campeonato é obrigatório" 
+                         placeholder="Digite o nome do campeonato" 
+                         styleClass="ui-inputtext" />
+
+            <!-- Botão de salvar -->
+            <p:commandButton value="Salvar" action="#{campeonatoBean.salvar}" styleClass="ui-button" 
+                             update="messages" />
+
+            <!-- Exibição das mensagens de erro ou sucesso -->
+            <p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true" />
+
+        </div>
+    </h:form>
+</h:body>
+</html>

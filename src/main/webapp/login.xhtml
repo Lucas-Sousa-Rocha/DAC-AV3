@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .ui-panel {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .button-login {
+            background-color: #007ad9;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .button-login:hover {
+            background-color: #005f9e;
+        }
+
+        .link-register {
+            font-size: 14px;
+            color: #007ad9;
+            text-decoration: none;
+        }
+
+        .link-register:hover {
+            text-decoration: underline;
+        }
+
+        .error-messages {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form>
+        <!-- Exibição de mensagens -->
+        <p:messages id="msgs" style="margin-bottom: 15px;" />
+
+        <!-- Painel central de login -->
+        <p:panel header="Login" style="width: 400px; text-align: center;">
+
+            <!-- Campos de entrada -->
+            <p:panelGrid columns="2" style="margin: 0 auto;" columnClasses="labelCol, inputCol">
+                <p:outputLabel for="login" value="Login:" />
+                <p:inputText id="login" 
+                             value="#{usuarioBean.usuario.login}" 
+                             placeholder="Digite seu login" 
+                             required="true" 
+                             requiredMessage="Login é obrigatório" />
+
+                <p:outputLabel for="senha" value="Senha:" />
+                <p:password id="senha" 
+                            value="#{usuarioBean.usuario.senha}" 
+                            placeholder="Digite sua senha" 
+                            required="true" 
+                            requiredMessage="Senha é obrigatória" 
+                            />
+            </p:panelGrid>
+			<br/>
+            <!-- Botão de login -->
+            <p:commandButton value="Entrar" 
+                             action="#{usuarioBean.login()}" 
+                             icon="pi pi-sign-in" 
+                             styleClass="button-login" 
+                             style="margin-top: 15px;" 
+                             update="msgs" />
+
+            <!-- Link para página de cadastro -->
+            <h:commandLink value="Cadastrar novo usuário" 
+                           action="cadastro_usuario.xhtml" 
+                           styleClass="link-register" 
+                           style="display: block; margin-top: 15px;" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
