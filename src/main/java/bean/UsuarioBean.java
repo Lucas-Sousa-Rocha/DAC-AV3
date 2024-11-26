@@ -107,10 +107,10 @@ public class UsuarioBean {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário cadastrado com sucesso!", null));
             usuario = new Usuario(); // Limpa o formulário após salvar
-            return "login.xhtml?faces-redirect=true";  // Redireciona para a página de login
+            return  null/* "login.xhtml?faces-redirect=true"*/;  // Redireciona para a página de login
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario cadastrado !", null));
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario já cadastrado !", null));
             e.printStackTrace();
             return null;  // Permanece na página de cadastro
         }
