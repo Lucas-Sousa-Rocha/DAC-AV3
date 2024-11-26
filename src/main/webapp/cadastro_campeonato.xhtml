@@ -85,6 +85,12 @@
             <!-- Botão de salvar -->
             <p:commandButton value="Salvar" action="#{campeonatoBean.salvar}" styleClass="ui-button" 
                              update="messages" />
+            <br/><br/>
+            <h:link value="Voltar para o menu" outcome="opcoes.xhtml"
+				style="display: inline-block; text-align: center; 
+                           background: #f0f0f0; padding: 10px; border-radius: 5px; 
+                           color: #007ad9; text-decoration: none; 
+                           border: 1px solid #007ad9; font-size: 14px;" />
 
             <!-- Exibição das mensagens de erro ou sucesso -->
             <p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true" />

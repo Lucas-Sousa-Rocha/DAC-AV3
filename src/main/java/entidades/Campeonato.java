@@ -10,6 +10,7 @@ public class Campeonato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true) // Garante que o login seja único no banco de dados
     private String nome;
 
     @OneToMany(mappedBy = "campeonato", cascade = CascadeType.ALL)

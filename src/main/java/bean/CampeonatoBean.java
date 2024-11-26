@@ -55,7 +55,7 @@ public class CampeonatoBean {
 		} catch (Exception e) {
 			// Mensagem de erro
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao cadastrar campeonato!", null));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro campeonato já cadastrado!", null));
 			e.printStackTrace();
 			return null;
 		}
