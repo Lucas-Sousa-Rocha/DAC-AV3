@@ -43,14 +43,23 @@ public class UsuarioDAO {
     }
    
 	
-	public List<Usuario> listar() {
+	public static List<Usuario> listar() {
 		EntityManager em = JPAUtil.criarEntityManager();
 		try {
-			TypedQuery<Usuario> query = em.createQuery("SELECT a FROM Aluno a", Usuario.class);
+			TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
 			return query.getResultList();
 		} finally {
 			em.close();
 		}
+	}
+
+	public static void excluir(Usuario usuario) {
+		EntityManager em = JPAUtil.criarEntityManager();
+		em.getTransaction().begin();
+		usuario = em.find(Usuario.class, usuario.getId());
+		em.remove(usuario);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 }

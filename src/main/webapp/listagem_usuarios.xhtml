@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Listagem de Usuários</title>
+    <h:outputStylesheet>
+        /* Estilos opcionais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .data-table-container {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .ui-button {
+            margin: 5px;
+        }
+    </h:outputStylesheet>
+</h:head>
+
+<h:body>
+    <div class="data-table-container">
+        <h1>Lista de Usuários</h1>
+        
+        <!-- Exibição de mensagens -->
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+        <!-- Tabela de listagem -->
+        <p:dataTable value="#{usuarioBean.usuarios}" var="usuario" 
+                     editable="true" widgetVar="usuariosTable" id="usuariosTable" 
+                     paginator="true" rows="10" 
+                     styleClass="ui-datatable">
+            
+            <!-- Coluna de ID -->
+            <p:column headerText="ID">
+                <h:outputText value="#{usuario.id}" />
+            </p:column>
+            
+            <!-- Coluna de Nome -->
+            <p:column headerText="Nome">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{usuario.nome}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{usuario.nome}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            
+            <!-- Coluna de Login -->
+            <p:column headerText="Login">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{usuario.login}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{usuario.login}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            
+            <!-- Coluna de Ações -->
+            <p:column headerText="Ações">
+                <p:commandButton value="Excluir" 
+                                 action="#{usuarioBean.excluir(usuario)}" 
+                                 update="messages,usuariosTable" 
+                                 icon="pi pi-trash" styleClass="ui-button-danger" />
+            </p:column>
+
+            <!-- Coluna para edição 
+            <p:column headerText="Editar">
+                <p:rowEditor />
+            </p:column> -->
+        </p:dataTable>
+
+        <!-- Botão para cadastro de novo usuário -->
+        <h:form>
+        	<br/>
+            <p:commandButton value="Cadastrar Novo Usuário" 
+                             action="cadastro_usuario.xhtml" 
+                             styleClass="ui-button-primary" />
+        </h:form>
+        <br/>
+        <h:link value="Voltar para o menu" 
+                        outcome="opcoes.xhtml" 
+                        style="display: inline-block; text-align: center; 
+                               background: #007ad9; padding: 10px; border-radius: 5px; 
+                               color: #fff; text-decoration: none; 
+                               border: 1px solid #005fa3; font-size: 14px;" />
+    </div>
+</h:body>
+
+</html>
