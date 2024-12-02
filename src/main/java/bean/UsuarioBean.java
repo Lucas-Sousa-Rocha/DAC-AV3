@@ -1,11 +1,12 @@
 package bean;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 import dao.UsuarioDAO;
 import entidades.Usuario;
 
@@ -15,9 +16,18 @@ public class UsuarioBean {
 
     private Usuario usuario = new Usuario(); // Usuário para login
     private UsuarioDAO usuarioDao = new UsuarioDAO();
+    private List<Usuario> usuarios;
 
-    public UsuarioDAO getUsuarioDao() {
-		return usuarioDao;
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public List<Usuario> getUsuarioDao() {
+		return usuarioDao.listar();
 	}
 
 	public void setUsuarioDao(UsuarioDAO usuarioDao) {
@@ -37,6 +47,8 @@ public class UsuarioBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+    
+    
 
     // Método para obter o nome do usuário logado
     public String getNomeUsuario() {

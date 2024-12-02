@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -41,13 +43,15 @@ public class UsuarioDAO {
     }
    
 	
-	/*public static void salvar(Usuario usuario) {
+	public List<Usuario> listar() {
 		EntityManager em = JPAUtil.criarEntityManager();
-		em.getTransaction().begin();
-		em.persist(usuario);
-		em.getTransaction().commit();
-		em.close();
-	}*/
+		try {
+			TypedQuery<Usuario> query = em.createQuery("SELECT a FROM Aluno a", Usuario.class);
+			return query.getResultList();
+		} finally {
+			em.close();
+		}
+	}
 
 }
 
