@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Cadastro de Usuário</title>
+	<style>
+body {
+	background-color: #f5f5f5;
+	font-family: 'Arial', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+}
+
+.form-container {
+	width: 100%;
+	max-width: 400px;
+	background: #ffffff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+	text-align: center;
+	font-size: 24px;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.form-container .form-buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.form-container .form-buttons p:commandButton, .form-container .form-buttons h:link
+	{
+	width: 48%;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form class="form-container" id="formCadastro">
+		<h1>Cadastro de Usuário</h1>
+
+		<!-- Exibir Mensagens -->
+		<p:messages autoUpdate="true" closable="true" />
+
+		<!-- Campo Nome -->
+		<p:panelGrid columns="2" columnClasses="label,value" style="width: 100%;">
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="O campo Nome é obrigatório." placeholder="Digite seu nome" />
+		</p:panelGrid>
+
+		<!-- Campo Login -->
+		<p:panelGrid columns="2" columnClasses="label,value" style="width: 100%; margin-top: 10px;">
+			<p:outputLabel for="login " value="Login:" />
+			<p:inputText id="login" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="O campo Login é obrigatório." placeholder="Digite seu login" />
+		</p:panelGrid>
+
+		<!-- Campo Senha -->
+		<p:panelGrid columns="2" columnClasses="label,value"
+			style="width: 100%; margin-top: 10px;">
+			<p:outputLabel for="senha" value="Senha:" />
+			<p:password id="senha" value="#{usuarioBean.usuario.senha}"
+				required="true" requiredMessage="O campo Senha é obrigatório."
+				placeholder="Digite sua senha" feedback="true" />
+		</p:panelGrid>
+
+		<!-- Botões -->
+		<div class="form-buttons">
+			<p:commandButton value="Salvar" action="#{usuarioBean.salvar}"
+				icon="pi pi-save" update="formCadastro" styleClass="p-button-success" process="@form"/>
+
+			<h:link value="Voltar para Login" outcome="login.xhtml"
+				style="display: inline-block; text-align: center; 
+                           background: #f0f0f0; padding: 10px; border-radius: 5px; 
+                           color: #007ad9; text-decoration: none; 
+                           border: 1px solid #007ad9; font-size: 14px;" />
+		</div>
+	</h:form>
+</h:body>
+</html>

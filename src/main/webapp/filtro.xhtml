@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Filtro de Jogos</title>
+
+	<!-- CSS Adicionado diretamente na página -->
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f7fa;
+			margin: 0;
+			padding: 0;
+		}
+		
+		h2 {
+			text-align: center;
+			color: #007ad9;
+			margin-top: 20px;
+		}
+
+		#filtroForm {
+			width: 80%;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #ffffff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+			margin-top: 30px;
+		}
+
+		/* Estilizando o botão "Voltar para o menu" */
+		h:link {
+			display: inline-block;
+			text-align: center;
+			background: #f0f0f0;
+			padding: 10px;
+			border-radius: 5px;
+			color: #007ad9;
+			text-decoration: none;
+			border: 1px solid #007ad9;
+			font-size: 14px;
+			margin-bottom: 20px;
+		}
+
+		h:link:hover {
+			background: #007ad9;
+			color: #ffffff;
+		}
+
+		/* Estilizando o painel */
+		.p-panel {
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			margin-bottom: 20px;
+		}
+
+		/* Estilizando o formulário */
+		.form-panel {
+			margin: 20px;
+		}
+
+		/* Input de texto */
+		.input-text {
+			width: 200px; /* Ajusta o tamanho do input */
+			padding: 10px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			font-size: 14px;
+			display: inline-block;
+		}
+
+		/* Botão "Localizar" */
+		.btn-localizar {
+			width: 100px; /* Largura fixa para o botão */
+			background-color: #007ad9;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			padding: 10px;
+			cursor: pointer;
+			display: inline-block;
+			margin-left: 10px; /* Espaçamento entre o input e o botão */
+		}
+
+		.btn-localizar:hover {
+			background-color: #005f8d;
+		}
+
+		/* Estilo da tabela */
+		.jogo-table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+
+		.jogo-table th, .jogo-table td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.jogo-table th {
+			background-color: #007ad9;
+			color: white;
+		}
+
+		.jogo-table tr:hover {
+			background-color: #f9f9f9;
+		}
+	</style>
+
+</h:head>
+<h:body>
+	<h:form id="filtroForm">
+
+		<h2>Filtro de Jogos</h2>
+
+		<!-- Link para voltar -->
+		<h:link value="Voltar para o menu" outcome="opcoes.xhtml"
+				style="display: inline-block; text-align: center; 
+                           background: #f0f0f0; padding: 10px; border-radius: 5px; 
+                           color: #007ad9; text-decoration: none; 
+                           border: 1px solid #007ad9; font-size: 14px;" />
+
+		<br />
+		<br />
+
+		<p:panel header="Selecione um time para buscar os jogos">
+			<h:panelGrid columns="2" styleClass="form-panel">
+				<h:outputLabel for="time" value="Digite o nome do time:" />
+
+				<!-- Alinhando o input e o botão em uma linha -->
+				<p:inputText id="time" value="#{jogoBean.timeSelecionado}"
+					required="true" label="Time" styleClass="input-text"
+					placeholder="Digite o nome do time" />
+
+				<h:commandButton value="Localizar"
+					action="#{jogoBean.buscarJogosPorTime}" styleClass="btn-localizar"
+					icon="pi pi-search" />
+			</h:panelGrid>
+		</p:panel>
+
+		<!-- Tabela de resultados com paginação -->
+		<p:dataTable value="#{jogoBean.jogos}" var="jogo" id="tabelaJogos"
+			paginator="true" rows="5" styleClass="jogo-table"
+			emptyMessage="Nenhum jogo encontrado." paginatorPosition="bottom">
+			<p:column headerText="Data">
+				#{jogo.dataPartida}
+			</p:column>
+			<p:column headerText="Adversário">
+				#{jogo.time1} vs #{jogo.time2}
+			</p:column>
+			<p:column headerText="Placar">
+				#{jogo.golsTime1} - #{jogo.golsTime2}
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>

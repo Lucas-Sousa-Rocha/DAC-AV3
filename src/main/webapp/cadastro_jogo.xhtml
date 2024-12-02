@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Cadastro de Jogo</title>
+	<h:outputStylesheet name="styles.css" />
+	<style>
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #f4f7fc;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.form-container {
+	background-color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	width: 500px;
+	max-width: 90%;
+}
+
+h3 {
+	color: #3498db;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.form-row {
+	margin-bottom: 15px;
+}
+
+.form-row label {
+	font-weight: bold;
+	color: #333;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.form-row input, .form-row select, .p-calendar, .p-button {
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.p-button {
+	background-color: #3498db;
+	border: none;
+	color: white;
+	cursor: pointer;
+}
+
+.p-button:hover {
+	background-color: #2980b9;
+}
+
+.p-grid {
+	display: flex;
+	gap: 15px;
+}
+
+.p-col {
+	flex: 1;
+}
+
+.p-messages {
+	margin-top: 20px;
+}
+</style>
+</h:head>
+
+<h:body>
+	<div class="form-container">
+		<h3>Cadastro de Jogo</h3>
+		<h:form id="formCadastro">
+			<p:panel header="Preencha os dados do Jogo" styleClass="p-panel">
+				<!-- Data da Partida -->
+				<div class="form-row">
+					<p:outputLabel value="Data da Partida:" for="dataPartida" />
+					<p:calendar id="dataPartida" value="#{jogoBean.jogo.dataPartida}"
+						placeholder="Selecione a data" pattern="dd/MM/yyyy" mask="true"
+						yearRange="c-100:c" showButtonPanel="true" navigator="true"
+						showIcon="true" required="true" />
+				</div>
+
+				<!-- Times -->
+				<div class="p-grid">
+					<div class="p-col">
+						<p:outputLabel value="Time 1:" for="time1" />
+						<p:selectOneMenu id="time1" value="#{jogoBean.jogo.time1}"
+							required="true">
+							<f:selectItem itemLabel="Selecione um time" itemValue="" />
+							<f:selectItem itemLabel="Time A" itemValue="Time A" />
+							<f:selectItem itemLabel="Time B" itemValue="Time B" />
+							<f:selectItem itemLabel="Time C" itemValue="Time C" />
+						</p:selectOneMenu>
+					</div>
+					<div class="p-col">
+						<p:outputLabel value="Time 2:" for="time2" />
+						<p:selectOneMenu id="time2" value="#{jogoBean.jogo.time2}"
+							required="true">
+							<f:selectItem itemLabel="Selecione um time" itemValue="" />
+							<f:selectItem itemLabel="Time A" itemValue="Time A" />
+							<f:selectItem itemLabel="Time B" itemValue="Time B" />
+							<f:selectItem itemLabel="Time C" itemValue="Time C" />
+						</p:selectOneMenu>
+					</div>
+				</div>
+
+
+				<!-- Times 
+                <div class="p-grid">
+                    <div class="p-col">
+                        <p:outputLabel value="Time 1:" for="time1" />
+                        <p:inputText id="time1" value="#{jogoBean.jogo.time1}" required="true" />
+                    </div>
+                    <div class="p-col">
+                        <p:outputLabel value="Time 2:" for="time2" />
+                        <p:inputText id="time2" value="#{jogoBean.jogo.time2}" required="true" />
+                    </div>
+                </div> -->
+
+				<!-- Gols -->
+				<div class="p-grid">
+					<div class="p-col">
+						<p:outputLabel value="Gols Time 1:" for="golsTime1" />
+						<p:inputText id="golsTime1" value="#{jogoBean.jogo.golsTime1}"
+							required="true" />
+					</div>
+					<div class="p-col">
+						<p:outputLabel value="Gols Time 2:" for="golsTime2" />
+						<p:inputText id="golsTime2" value="#{jogoBean.jogo.golsTime2}"
+							required="true" />
+					</div>
+				</div>
+
+				<!-- Campeonato -->
+				<div class="form-row">
+					<p:outputLabel value="Campeonato:" for="campeonato" />
+					<p:selectOneMenu id="campeonato" value="#{jogoBean.campeonatoId}">
+						<f:selectItems value="#{campeonatoBean.listarjogos}" var="camp"
+							itemValue="#{camp.id}" itemLabel="#{camp.nome}" />
+					</p:selectOneMenu>
+				</div>
+			</p:panel>
+
+			<!-- Botões -->
+			<p:commandButton value="Salvar" action="#{jogoBean.salvar()}"
+				update="formCadastro" process="@form" styleClass="p-button" />
+
+			<br />
+			<br />
+			<h:link value="Voltar para o menu" outcome="opcoes.xhtml"
+				style="display: inline-block; text-align: center; 
+                           background: #f0f0f0; padding: 10px; border-radius: 5px; 
+                           color: #007ad9; text-decoration: none; 
+                           border: 1px solid #007ad9; font-size: 14px;" />
+
+			<!-- Exibir Mensagens -->
+			<p:messages id="msgs" autoUpdate="true" styleClass="p-messages"
+				closable="true" />
+		</h:form>
+	</div>
+</h:body>
+</html>
