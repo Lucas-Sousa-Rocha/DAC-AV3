@@ -33,6 +33,7 @@ public class UsuarioBean {
         return usuario;
     }
 
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -115,6 +116,26 @@ public class UsuarioBean {
             return null;  // Permanece na página de cadastro
         }
     }
+    
+    /*public void verificarLogin() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            // Verifica se o usuário está logado
+            Usuario usuarioLogado = (Usuario) context.getExternalContext().getSessionMap().get("usuarioLogado");
+
+            if (usuarioLogado == null) {
+                // Redireciona para a página de login
+                context.getExternalContext().redirect("login.xhtml");
+                context.responseComplete(); // Garante que a resposta será encerrada
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
+
+    
+    
 
 
 }
