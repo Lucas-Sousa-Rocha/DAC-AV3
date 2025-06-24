@@ -10,28 +10,28 @@ Este sistema web permite o gerenciamento completo de **usuários**, **campeonato
 ## 🖼️ Telas do Sistema
 
 ### 🔐 Tela de Login
-![Tela de Login](images/login.png)
+![Tela de Login](imagens/login.png)
 
 ### 👤 Cadastro de Usuário
-![Cadastro de Usuário](images/cadastro_usuario.png)
+![Cadastro de Usuário](imagens/cadastro_usuario.png)
 
 ### 🏠 Menu Principal
-![Menu Home](images/opcoes.png)
+![Menu Home](imagens/opcoes.png)
 
 ### 🏆 Cadastro de Campeonato
-![Cadastro de Campeonato](images/cadastro_campeonato.png)
+![Cadastro de Campeonato](imagens/cadastro_campeonato.png)
 
 ### 🎮 Cadastro de Jogo
-![Cadastro de Jogo](images/cadastro_jogo.png)
+![Cadastro de Jogo](imagens/cadastro_jogo.png)
 
 ### 📋 Listagem de Jogos
-![Listagem de Jogos](images/listagem.png)
+![Listagem de Jogos](imagens/listagem.png)
 
 ### 🔎 Filtro de Jogos
-![Filtro de Jogos](images/filtro.png)
+![Filtro de Jogos](imagens/filtro.png)
 
 ### 👥 Listagem de Usuários
-![Listagem de Usuários](images/listagem_usuarios.png)
+![Listagem de Usuários](imagens/listagem_usuarios.png)
 
 ---
 
@@ -73,7 +73,7 @@ Este sistema web permite o gerenciamento completo de **usuários**, **campeonato
 
 ## 🌐 Rotas do Sistema
 
-| Página                       | Rota                                                                 |
+| Páginas                     | Rotas                                                                 |
 |-----------------------------|----------------------------------------------------------------------|
 | 🔐 Login                    | [`/login.xhtml`](http://localhost:8080/DAC-AV3/login.xhtml)           |
 | 👤 Cadastro de Usuário      | [`/cadastro_usuario.xhtml`](http://localhost:8080/DAC-AV3/cadastro_usuario.xhtml) |
@@ -108,7 +108,7 @@ Este sistema web permite o gerenciamento completo de **usuários**, **campeonato
 
 4. **Crie o banco de dados no PostgreSQL**
 
-CREATE DATABASE campeonato_db;
+   CREATE DATABASE campeonato_db;
 
 5. **Execute o projeto no servidor Tomcat**
 
@@ -119,7 +119,7 @@ Toda contribuição é bem-vinda! 💡
 
 ## 👨‍💻 Autor
 
-Lucas Sousa Rocha
+Lucas Sousa Da Rocha
 Estudante de Desenvolvimento de Aplicações Corporativas – 2024.2
 🔗 GitHub
 
